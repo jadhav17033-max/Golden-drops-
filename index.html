@@ -1,51 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GoldenDrops Dry Fruits</title>
-<style>
-body{margin:0;font-family:Arial;background:#f4e8d5;color:#3b2a1a}
-header{height:100vh;background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6');background-size:cover;display:flex;align-items:center;justify-content:center;text-align:center;color:white;flex-direction:column}
-h1{font-size:50px;margin:0}
-p{font-size:18px}
-.btn{padding:15px 25px;background:#c9a227;color:black;font-weight:bold;border-radius:10px;text-decoration:none;margin-top:20px}
-.section{padding:50px;text-align:center}
-.card{display:inline-block;background:white;padding:20px;margin:10px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.1)}
-footer{padding:20px;text-align:center;background:#3b2a1a;color:white}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldenDrops Dry Fruits | Premium & Organic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Color Palette & Variables --- */
+        :root {
+            --primary-green: #1A3622; /* Deep Organic Green */
+            --luxury-gold: #C5A059;   /* Metallic Gold */
+            --bg-cream: #FDFBF7;      /* Warm Off-White */
+            --text-dark: #2C3E2D;     /* Charcoal Green for text */
+            --white: #FFFFFF;
+        }
+
+        /* --- Global Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: var(--bg-cream);
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+        }
+
+        .logo-img {
+            width: 180px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background-color: var(--primary-green);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+            background-image: radial-gradient(circle at center, rgba(197, 160, 89, 0.1) 0%, transparent 70%);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: var(--luxury-gold);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            color: #E8E8E8;
+            font-style: italic;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--luxury-gold);
+            margin-bottom: 40px;
+        }
+
+        /* --- Buttons --- */
+        .btn-gold {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--luxury-gold);
+            color: var(--primary-green);
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--luxury-gold);
+        }
+
+        .btn-gold:hover {
+            background-color: transparent;
+            color: var(--luxury-gold);
+        }
+
+        /* --- Products Section --- */
+        .products-section {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 36px;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 50px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--white);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(26, 54, 34, 0.1);
+        }
+
+        .product-img-container {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            background-color: #F9F9F9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img-container img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 30px 20px;
+        }
+
+        .product-title {
+            font-size: 24px;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+
+        .product-desc {
+            font-size: 15px;
+            color: #777;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--luxury-gold);
+            margin-bottom: 25px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 10px 25px;
+            border: 1px solid var(--primary-green);
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-green);
+            color: var(--bg-cream);
+            text-align: center;
+            padding: 50px 20px 30px 20px;
+            border-top: 4px solid var(--luxury-gold);
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--luxury-gold);
+            margin-bottom: 15px;
+        }
+
+        .footer-text {
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: #D1D5D2;
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+            color: #A0AAB2;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 18px; }
+            .hero-features { flex-direction: column; gap: 10px; }
+        }
+    </style>
 </head>
 <body>
 
-<header>
-<h1>GoldenDrops Dry Fruits</h1>
-<p>Pure. Organic. Naturally Golden.</p>
-<p>Farmer to Customer – Direct From Nashik Farms</p>
-<a class="btn" href="upi://pay?pa=9423529871@ybl&pn=GoldenDrops&cu=INR&am=599">Buy 1KG ₹599</a>
-</header>
+    <header>
+        <img src="1000322021.png" alt="GoldenDrops Dry Fruits Logo" class="logo-img">
+    </header>
 
-<div class="section">
-<h2>Our Products</h2>
-<div class="card">
-<h3>1 KG Pack</h3>
-<p>₹599</p>
-</div>
-<div class="card">
-<h3>500 GM Pack</h3>
-<p>₹350</p>
-</div>
-</div>
+    <section class="hero">
+        <h1>Pure. Organic. Naturally Golden.</h1>
+        <p>Experience the finest quality dry fruits, sun-dried to perfection and delivered direct from the lush farms of Nashik to your doorstep.</p>
+        
+        <div class="hero-features">
+            <span>🌿 100% Organic</span>
+            <span>🚫 No Chemicals</span>
+            <span>☀️ Sun Dried</span>
+            <span>🧑‍🌾 Farm to Table</span>
+        </div>
 
-<div class="section">
-<h2>Why GoldenDrops?</h2>
-<p>100% Organic • No Chemicals • Sun Dried • Direct From Farmers</p>
-</div>
+        <a href="#products" class="btn-gold">Explore Our Collection</a>
+    </section>
 
-<footer>
-<p>Vaibhav Jadhav & Roshani Sonawane</p>
-<p>Nashik, Maharashtra</p>
-<p>Contact: 9423529871</p>
-</footer>
+    <section id="products" class="products-section">
+        <h2 class="section-title">Our Premium Collection</h2>
+        <p class="section-subtitle">Handpicked goodness, packed with care and luxury.</p>
+
+        <div class="product-grid">
+            
+            <div class="product-card">
+                <div class="product-img-container">
+                    <img src="1000322199.png" alt="Premium Gift Box">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">The Royal Collection</h3>
+                    <p class="product-desc">Our signature black luxury box, perfect for gifting. Contains premium assorted Kishmish & Munakka.</p>
+                    <div class="product-price">₹1,299 <span style="font-size:14px; color:#999; text-decoration:line-through;">₹1,500</span></div>
+                    <a href="upi://pay?pa=9423529871@ybl&pn=GoldenDrops&cu=INR&am=1299" class="btn-outline">Buy Now</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-container">
+                    <img src="1000322025.png" alt="Organic Kishmish & Munakka Pouches">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Organic Twin Pack</h3>
+                    <p class="product-desc">Pure, authentic, and chemical-free 100% natural organic pouches. Daily health essentials.</p>
+                    <div class="product-price">₹899 <span style="font-size:14px; color:#999;">(Combo)</span></div>
+                    <a href="upi://pay?pa=9423529871@ybl&pn=GoldenDrops&cu=INR&am=899" class="btn-outline">Buy Now</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-container">
+                    <img src="1000322022.png" alt="Farm Fresh Kishmish Pouch">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Farm Fresh Pouch</h3>
+                    <p class="product-desc">500g of pure golden raisins sourced directly from Nashik vineyards. Taste the nature.</p>
+                    <div class="product-price">₹499 <span style="font-size:14px; color:#999;">(500g)</span></div>
+                    <a href="upi://pay?pa=9423529871@ybl&pn=GoldenDrops&cu=INR&am=499" class="btn-outline">Buy Now</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">GoldenDrops Dry Fruits</div>
+        <p class="footer-text">Grown with love, packed with luxury.</p>
+        <p class="footer-text"><strong>Founders:</strong> Vaibhav Jadhav & Roshani Sonawane</p>
+        <p class="footer-text"><strong>Location:</strong> Nashik, Maharashtra, India</p>
+        <p class="footer-text" style="margin-top: 15px;">📞 Contact: +91 9423529871</p>
+        
+        <div class="footer-bottom">
+            &copy; 2026 GoldenDrops Dry Fruits. All Rights Reserved.
+        </div>
+    </footer>
 
 </body>
 </html>
