@@ -12,9 +12,9 @@
 :root {
     --gold: #D4AF37;
     --gold-gradient: linear-gradient(135deg, #CBA258 0%, #F5E1A4 50%, #CBA258 100%);
-    --glass-dark: rgba(10, 10, 10, 0.7);
-    --glass-light: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(212, 175, 55, 0.2);
+    --glass-dark: rgba(10, 10, 10, 0.75);
+    --glass-light: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(212, 175, 55, 0.3);
     --text: #ffffff;
     --transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -26,6 +26,7 @@ body {
     font-family: 'Inter', sans-serif;
     color: var(--text);
     overflow-x: hidden;
+    /* Full Site Grapes Background */
     background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80') center/cover fixed;
     -webkit-font-smoothing: antialiased;
 }
@@ -35,7 +36,7 @@ body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.65); /* Slightly darker for better text readability */
+    background: rgba(0, 0, 0, 0.7); /* Thoda aur dark kiya text visibility ke liye */
     z-index: -1;
 }
 
@@ -48,20 +49,26 @@ nav {
     background: transparent;
     display: flex;
     justify-content: center;
+    align-items: center;
     z-index: 1000;
     transition: var(--transition);
     border-bottom: 1px solid transparent;
 }
 nav.scrolled {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(15px);
     padding: 10px 5%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+/* Logo Fix: Invert hata diya aur perfect circle bana diya */
 .nav-logo {
-    height: 60px;
-    filter: brightness(0) invert(1);
+    height: 70px;
+    width: 70px;
+    object-fit: contain;
+    border-radius: 50%; /* Circle shape */
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5); /* Halki si gold chamak */
     transition: var(--transition);
+    background: #fff;
 }
 
 /* --- HERO SECTION --- */
@@ -127,7 +134,7 @@ nav.scrolled {
     backdrop-filter: blur(20px);
     border-radius: 30px;
     border: 1px solid var(--glass-border);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
 }
 .title {
     text-align: center;
@@ -167,7 +174,7 @@ nav.scrolled {
     transform: translateY(-15px);
     border-color: var(--gold);
     background: rgba(30, 30, 30, 0.6);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 .card img {
     width: 100%;
@@ -223,7 +230,7 @@ nav.scrolled {
 footer {
     background: rgba(5, 5, 5, 0.95);
     padding: 80px 8% 30px;
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    border-top: 1px solid var(--glass-border);
 }
 .footer-grid {
     display: grid;
@@ -243,7 +250,7 @@ footer {
     margin-bottom: 10px;
 }
 
-/* 🍇 GRAPES GALLERY (Perfect Square Grid) */
+/* 🍇 EXCLUSIVE GRAPES GALLERY */
 .grapes-gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -255,14 +262,13 @@ footer {
     object-fit: cover;
     border-radius: 8px;
     transition: var(--transition);
-    filter: grayscale(20%) brightness(0.8);
 }
 .grapes-gallery img:hover {
     transform: scale(1.1);
-    filter: grayscale(0%) brightness(1);
     box-shadow: 0 10px 20px rgba(0,0,0,0.5);
     z-index: 2;
     position: relative;
+    border: 2px solid var(--gold);
 }
 
 .footer-bottom {
@@ -352,20 +358,20 @@ footer {
 <footer>
     <div class="footer-grid reveal">
         
-        <div class="footer-col">
-            <img src="1000322021.png" style="height:70px; filter:invert(1); margin-bottom: 20px;" alt="GoldenDrops Logo">
-            <p>Born in the sun-kissed vineyards of Nashik. We bypass the brokers to bring pure, organic harvest directly from our hands to your home.</p>
+        <div class="footer-col" style="text-align: center;">
+            <img src="1000322021.png" style="height:90px; width:90px; object-fit:contain; border-radius:50%; background:#fff; padding:5px; margin-bottom: 20px; box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);" alt="GoldenDrops Logo">
+            <p style="text-align: left;">Born in the sun-kissed vineyards of Nashik. We bypass the brokers to bring pure, organic harvest directly from our hands to your home.</p>
         </div>
 
         <div class="footer-col">
             <h3>Explore Our Roots</h3>
             <div class="grapes-gallery">
-                <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba" alt="Grapes">
-                <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919" alt="Grapes">
-                <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce" alt="Grapes">
-                <img src="https://images.unsplash.com/photo-1615485500704-8e990f9900f4" alt="Grapes">
-                <img src="https://images.unsplash.com/photo-1506806732259-39c2d0268443" alt="Grapes">
-                <img src="https://images.unsplash.com/photo-1514996937319-344454492b37" alt="Grapes">
+                <img src="https://images.unsplash.com/photo-1596431988904-45371bc607d7?q=80&w=400" alt="Grapes Vineyard">
+                <img src="https://images.unsplash.com/photo-1537233772274-1ba1c3f61ec4?q=80&w=400" alt="Green Grapes">
+                <img src="https://images.unsplash.com/photo-1603569283847-aa295f0d016a?q=80&w=400" alt="Red Grapes">
+                <img src="https://images.unsplash.com/photo-1584305593883-93d390a88b56?q=80&w=400" alt="Grapes Basket">
+                <img src="https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=400" alt="Grapes Macro">
+                <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?q=80&w=400" alt="Dark Grapes">
             </div>
         </div>
 
