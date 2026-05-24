@@ -5,155 +5,293 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GoldenDrops | Premium Organic Dry Fruits</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
-:root{
-    --gold:#D4AF37;
-    --glass:rgba(0,0,0,0.55);
-    --text:#fff;
+/* --- PREMIUM VARIABLES --- */
+:root {
+    --gold: #D4AF37;
+    --gold-gradient: linear-gradient(135deg, #CBA258 0%, #F5E1A4 50%, #CBA258 100%);
+    --glass-dark: rgba(10, 10, 10, 0.7);
+    --glass-light: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(212, 175, 55, 0.2);
+    --text: #ffffff;
+    --transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* GLOBAL */
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-    font-family:Inter;
-    color:#fff;
-    overflow-x:hidden;
-    background:url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80') center/cover fixed;
+/* --- GLOBAL RESET --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    overflow-x: hidden;
+    background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80') center/cover fixed;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* DARK OVERLAY LAYER */
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.55);
-    z-index:-1;
+/* --- DARK OVERLAY LAYER --- */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65); /* Slightly darker for better text readability */
+    z-index: -1;
 }
 
-/* NAV */
-nav{
-    position:fixed;
-    top:0;
-    width:100%;
-    padding:12px 5%;
-    background:rgba(0,0,0,0.4);
-    backdrop-filter:blur(12px);
-    display:flex;
-    justify-content:center;
-    z-index:1000;
+/* --- GLASS NAVIGATION --- */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 5%;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+    transition: var(--transition);
+    border-bottom: 1px solid transparent;
 }
-nav.scrolled{background:#000}
-
-.nav-logo{height:55px;filter:brightness(0) invert(1)}
-
-/* HERO */
-.hero{
-    height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
+nav.scrolled {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(15px);
+    padding: 10px 5%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
-.hero h1{
-    font-size:6vw;
-    font-family:Playfair Display;
-    background:linear-gradient(90deg,#d4af37,#fff,#d4af37);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-.hero p{letter-spacing:4px;color:#ddd;margin:15px 0}
-
-/* BUTTON */
-.btn{
-    padding:14px 40px;
-    background:linear-gradient(135deg,#d4af37,#fff3b0);
-    color:#000;
-    border-radius:40px;
-    font-weight:600;
-    display:inline-block;
+.nav-logo {
+    height: 60px;
+    filter: brightness(0) invert(1);
+    transition: var(--transition);
 }
 
-/* SECTION */
-.section{
-    margin:60px 5%;
-    padding:80px 40px;
-    background:rgba(0,0,0,0.6);
-    backdrop-filter:blur(12px);
-    border-radius:25px;
-    border:1px solid rgba(212,175,55,0.2);
+/* --- HERO SECTION --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
-.title{
-    text-align:center;
-    font-size:40px;
-    color:var(--gold);
+.hero-content {
+    animation: fadeInDown 1.5s ease-out;
 }
-.subtitle{
-    text-align:center;
-    color:#ccc;
-    margin-bottom:50px;
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-
-/* PRODUCTS */
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:30px;
+.hero h1 {
+    font-size: 6.5vw;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
-.card{
-    background:rgba(255,255,255,0.05);
-    padding:25px;
-    border-radius:18px;
-    text-align:center;
-    transition:.4s;
-}
-.card:hover{
-    transform:translateY(-10px);
-    border:1px solid var(--gold);
-}
-.card img{width:100%;height:220px;object-fit:contain;background:#fff;border-radius:10px}
-
-/* FOOTER */
-footer{
-    background:#0a0a0a;
-    padding:70px 8%;
-}
-.footer-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:40px;
+.hero p {
+    font-size: 18px;
+    letter-spacing: 5px;
+    color: #EAEAEA;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    font-weight: 300;
 }
 
-/* 🍇 GRAPES GALLERY */
-.grapes-gallery{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
+/* --- PREMIUM BUTTONS --- */
+.btn {
+    padding: 16px 45px;
+    background: var(--gold-gradient);
+    color: #000;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+    border: 1px solid transparent;
 }
-.grapes-gallery img{
-    width:100%;
-    height:80px;
-    object-fit:cover;
-    border-radius:10px;
-    transition:.3s;
-}
-.grapes-gallery img:hover{
-    transform:scale(1.1);
-}
-
-.footer-bottom{
-    text-align:center;
-    margin-top:40px;
-    color:#777;
-    border-top:1px solid #222;
-    padding-top:20px;
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
 }
 
-/* MOBILE */
-@media(max-width:768px){
-.hero h1{font-size:12vw}
-.grapes-gallery{grid-template-columns:repeat(2,1fr)}
+/* --- SECTIONS (GLASSMORPHISM) --- */
+.section {
+    margin: 80px 5%;
+    padding: 100px 5%;
+    background: var(--glass-dark);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+.title {
+    text-align: center;
+    font-size: 46px;
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+.subtitle {
+    text-align: center;
+    color: #bbb;
+    margin-bottom: 60px;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+/* --- PRODUCT GRID & CARDS --- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.card {
+    background: var(--glass-light);
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card:hover {
+    transform: translateY(-15px);
+    border-color: var(--gold);
+    background: rgba(30, 30, 30, 0.6);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+.card img {
+    width: 100%;
+    height: 240px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 25px;
+    transition: transform 0.6s ease;
+}
+.card:hover img {
+    transform: scale(1.05);
+}
+.card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: #fff;
+}
+.card p {
+    color: #aaa;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.card h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+/* WHATSAPP ORDER BUTTON */
+.btn-outline {
+    display: block;
+    width: 100%;
+    padding: 14px 0;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    border-radius: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 13px;
+    transition: var(--transition);
+}
+.btn-outline:hover {
+    background: var(--gold);
+    color: #000;
+}
+
+/* --- FOOTER --- */
+footer {
+    background: rgba(5, 5, 5, 0.95);
+    padding: 80px 8% 30px;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 50px;
+}
+.footer-col h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+.footer-col p {
+    color: #999;
+    line-height: 1.8;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+/* 🍇 GRAPES GALLERY (Perfect Square Grid) */
+.grapes-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+.grapes-gallery img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: var(--transition);
+    filter: grayscale(20%) brightness(0.8);
+}
+.grapes-gallery img:hover {
+    transform: scale(1.1);
+    filter: grayscale(0%) brightness(1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    z-index: 2;
+    position: relative;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 60px;
+    color: #666;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 25px;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+/* --- ANIMATIONS (Scroll Reveal) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: var(--transition);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media(max-width: 768px) {
+    .hero h1 { font-size: 12vw; }
+    .hero p { font-size: 14px; letter-spacing: 3px; }
+    .section { margin: 40px 5%; padding: 60px 5%; }
+    .grapes-gallery { grid-template-columns: repeat(3, 1fr); gap: 8px; }
 }
 </style>
 </head>
@@ -161,88 +299,111 @@ footer{
 <body>
 
 <nav>
-    <img src="1000322021.png" class="nav-logo">
+    <img src="1000322021.png" class="nav-logo" alt="GoldenDrops Logo">
 </nav>
 
 <header class="hero">
-    <div>
+    <div class="hero-content">
         <h1>GoldenDrops</h1>
         <p>Direct From Nashik Vineyards</p>
         <a class="btn" href="#products">Explore Harvest</a>
     </div>
 </header>
 
-<section class="section" id="products">
+<section class="section reveal" id="products">
     <h2 class="title">Premium Collection</h2>
     <p class="subtitle">Pure organic grapes & dry fruits luxury range</p>
 
     <div class="grid">
 
-        <div class="card">
-            <img src="1000322199.png">
-            <h3>Royal Box</h3>
-            <p>Luxury gifting pack</p>
-            <h2 style="color:gold">₹1299</h2>
+        <div class="card reveal">
+            <img src="1000322199.png" alt="Royal Box">
+            <div>
+                <h3>Royal Box</h3>
+                <p>Luxury gifting pack</p>
+                <h2>₹1299</h2>
+                <a href="https://wa.me/919423529871?text=Hi,%20I%20want%20to%20order%20the%20Royal%20Box%20(₹1299)" class="btn-outline">Order on WhatsApp</a>
+            </div>
         </div>
 
-        <div class="card">
-            <img src="1000322025.png">
-            <h3>Organic Twin Pack</h3>
-            <p>100% chemical free</p>
-            <h2 style="color:gold">₹899</h2>
+        <div class="card reveal">
+            <img src="1000322025.png" alt="Organic Twin Pack">
+            <div>
+                <h3>Organic Twin Pack</h3>
+                <p>100% chemical free</p>
+                <h2>₹899</h2>
+                <a href="https://wa.me/919423529871?text=Hi,%20I%20want%20to%20order%20the%20Organic%20Twin%20Pack%20(₹899)" class="btn-outline">Order on WhatsApp</a>
+            </div>
         </div>
 
-        <div class="card">
-            <img src="1000322022.png">
-            <h3>Farm Pouch</h3>
-            <p>Direct vineyard fresh</p>
-            <h2 style="color:gold">₹499</h2>
+        <div class="card reveal">
+            <img src="1000322022.png" alt="Farm Pouch">
+            <div>
+                <h3>Farm Pouch</h3>
+                <p>Direct vineyard fresh</p>
+                <h2>₹499</h2>
+                <a href="https://wa.me/919423529871?text=Hi,%20I%20want%20to%20order%20the%20Farm%20Pouch%20(₹499)" class="btn-outline">Order on WhatsApp</a>
+            </div>
         </div>
 
     </div>
 </section>
 
 <footer>
-
-<div class="footer-grid">
-
-    <div>
-        <img src="1000322021.png" style="height:60px;filter:invert(1)">
-        <p style="color:#aaa;margin-top:15px">
-            Premium organic grapes from Nashik vineyards.
-        </p>
-    </div>
-
-    <div>
-        <h3 style="color:gold">Explore Grapes Varieties</h3>
-        <div class="grapes-gallery">
-            <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba">
-            <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919">
-            <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce">
-            <img src="https://images.unsplash.com/photo-1615485500704-8e990f9900f4">
-            <img src="https://images.unsplash.com/photo-1506806732259-39c2d0268443">
-            <img src="https://images.unsplash.com/photo-1514996937319-344454492b37">
+    <div class="footer-grid reveal">
+        
+        <div class="footer-col">
+            <img src="1000322021.png" style="height:70px; filter:invert(1); margin-bottom: 20px;" alt="GoldenDrops Logo">
+            <p>Born in the sun-kissed vineyards of Nashik. We bypass the brokers to bring pure, organic harvest directly from our hands to your home.</p>
         </div>
+
+        <div class="footer-col">
+            <h3>Explore Our Roots</h3>
+            <div class="grapes-gallery">
+                <img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba" alt="Grapes">
+                <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919" alt="Grapes">
+                <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce" alt="Grapes">
+                <img src="https://images.unsplash.com/photo-1615485500704-8e990f9900f4" alt="Grapes">
+                <img src="https://images.unsplash.com/photo-1506806732259-39c2d0268443" alt="Grapes">
+                <img src="https://images.unsplash.com/photo-1514996937319-344454492b37" alt="Grapes">
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h3>Contact Us</h3>
+            <p><strong>Founders:</strong> Vaibhav Jadhav & Roshani Sonawane</p>
+            <p><strong>Location:</strong> Nashik, Maharashtra, India</p>
+            <p><strong>WhatsApp:</strong> +91 9423529871</p>
+        </div>
+
     </div>
 
-    <div>
-        <h3 style="color:gold">Contact</h3>
-        <p style="color:#aaa">Nashik, Maharashtra</p>
-        <p style="color:#aaa">WhatsApp: +91 9423529871</p>
+    <div class="footer-bottom">
+        &copy; 2026 GoldenDrops Dry Fruits | PURE • ORGANIC • PREMIUM
     </div>
-
-</div>
-
-<div class="footer-bottom">
-    © 2026 GoldenDrops | PURE • ORGANIC • PREMIUM
-</div>
-
 </footer>
 
 <script>
-window.addEventListener("scroll",()=>{
-document.querySelector("nav").classList.toggle("scrolled",window.scrollY>50)
-});
+    // Navbar Scroll Effect
+    window.addEventListener("scroll", () => {
+        document.querySelector("nav").classList.toggle("scrolled", window.scrollY > 50);
+    });
+
+    // Scroll Reveal Animation
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+
+    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+        });
+    }, revealOptions);
+
+    reveals.forEach(reveal => {
+        revealOnScroll.observe(reveal);
+    });
 </script>
 
 </body>
