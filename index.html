@@ -3,20 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GoldenDrops Dry Fruits | Premium & Organic</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>GoldenDrops Dry Fruits | Premium Organic</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
-        /* --- Color Palette & Variables --- */
+        /* --- CSS Variables & Color Palette --- */
         :root {
-            --primary-green: #1A3622; /* Deep Organic Green */
-            --luxury-gold: #C5A059;   /* Metallic Gold */
-            --bg-cream: #FDFBF7;      /* Warm Off-White */
-            --text-dark: #2C3E2D;     /* Charcoal Green for text */
+            --matte-beige: #F4EFE6;
+            --olive-green: #5A6B47;
+            --dark-brown: #2C221B;
+            --subtle-gold: #CBA258;
             --white: #FFFFFF;
+            --transition-smooth: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* --- Global Styles --- */
+        /* --- Global Reset & Typography --- */
         * {
             margin: 0;
             padding: 0;
@@ -24,306 +28,580 @@
         }
 
         body {
-            font-family: 'Lato', sans-serif;
-            background-color: var(--bg-cream);
-            color: var(--text-dark);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--matte-beige);
+            color: var(--dark-brown);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, h4 {
+        h1, h2, h3, h4, .serif {
             font-family: 'Playfair Display', serif;
-            font-weight: 600;
         }
 
-        /* --- Header & Navigation --- */
-        header {
-            background-color: var(--bg-cream);
-            text-align: center;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+        a { text-decoration: none; }
+        
+        /* --- Scroll Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition-smooth);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .logo-img {
-            width: 180px;
-            height: auto;
-            margin-bottom: 10px;
+        /* --- Navbar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            transition: background-color 0.4s ease;
         }
+        nav.scrolled {
+            background-color: rgba(244, 239, 230, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark-brown);
+            letter-spacing: 1px;
+        }
+        nav.scrolled .logo { color: var(--dark-brown); }
+        .hero-nav-text { color: var(--white); }
+        nav.scrolled .hero-nav-text { color: var(--dark-brown); }
 
         /* --- Hero Section --- */
         .hero {
-            background-color: var(--primary-green);
-            color: var(--white);
-            text-align: center;
-            padding: 80px 20px;
-            background-image: radial-gradient(circle at center, rgba(197, 160, 89, 0.1) 0%, transparent 70%);
-        }
-
-        .hero h1 {
-            font-size: 42px;
-            color: var(--luxury-gold);
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .hero p {
-            font-size: 20px;
-            font-weight: 300;
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-            color: #E8E8E8;
-            font-style: italic;
-        }
-
-        .hero-features {
+            position: relative;
+            height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--luxury-gold);
-            margin-bottom: 40px;
-        }
-
-        /* --- Buttons --- */
-        .btn-gold {
-            display: inline-block;
-            padding: 15px 35px;
-            background-color: var(--luxury-gold);
-            color: var(--primary-green);
-            font-family: 'Lato', sans-serif;
-            font-weight: 700;
-            font-size: 16px;
-            text-decoration: none;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            border: 1px solid var(--luxury-gold);
-        }
-
-        .btn-gold:hover {
-            background-color: transparent;
-            color: var(--luxury-gold);
-        }
-
-        /* --- Products Section --- */
-        .products-section {
-            padding: 80px 5%;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 36px;
-            color: var(--primary-green);
-            margin-bottom: 15px;
-        }
-
-        .section-subtitle {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 50px;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .product-card {
-            background: var(--white);
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(26, 54, 34, 0.1);
-        }
-
-        .product-img-container {
-            width: 100%;
-            height: 300px;
-            overflow: hidden;
-            background-color: #F9F9F9;
-            display: flex;
             align-items: center;
-            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            overflow: hidden;
         }
-
-        .product-img-container img {
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
+            z-index: -2;
+            transform: scale(1.05);
+            animation: slowZoom 20s infinite alternate;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(44,34,27,0.3), rgba(44,34,27,0.7));
+            z-index: -1;
+        }
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        .hero h1 {
+            font-size: 5vw;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            color: var(--subtle-gold);
+            text-transform: uppercase;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+        }
+        .btn {
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .btn-primary {
+            background-color: var(--subtle-gold);
+            color: var(--dark-brown);
+            border: 1px solid var(--subtle-gold);
+        }
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--subtle-gold);
+        }
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 1px solid var(--white);
+        }
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--dark-brown);
+        }
+
+        /* --- Common Section Styles --- */
+        section {
+            padding: 120px 10%;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            color: var(--olive-green);
+            margin-bottom: 20px;
+        }
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--dark-brown);
+            margin-bottom: 60px;
+            font-weight: 300;
+        }
+
+        /* --- Story Section --- */
+        .story {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        .story-img {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        .story-img img {
+            width: 100%;
+            height: auto;
+            display: block;
             transition: transform 0.5s ease;
         }
-
-        .product-card:hover .product-img-container img {
-            transform: scale(1.05);
+        .story-img:hover img {
+            transform: scale(1.03);
+        }
+        .story-content {
+            flex: 1;
+        }
+        .story-content h2 {
+            font-size: 48px;
+            color: var(--dark-brown);
+            margin-bottom: 20px;
+        }
+        .story-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
         }
 
-        .product-info {
-            padding: 30px 20px;
+        /* --- Trust Section --- */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .trust-item {
+            padding: 30px;
+        }
+        .trust-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--olive-green);
+        }
+        .trust-item h4 {
+            font-size: 18px;
+            color: var(--dark-brown);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
         }
 
+        /* --- Product Section --- */
+        .products {
+            background-color: var(--white);
+        }
+        .product-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        .product-card {
+            background: var(--matte-beige);
+            border-radius: 20px;
+            padding: 40px;
+            width: 400px;
+            text-align: center;
+            position: relative;
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(203, 162, 88, 0.1);
+        }
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(44, 34, 27, 0.08);
+            border-color: var(--subtle-gold);
+        }
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--olive-green);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .product-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            mix-blend-mode: multiply;
+        }
         .product-title {
-            font-size: 24px;
-            color: var(--primary-green);
+            font-size: 28px;
+            color: var(--dark-brown);
             margin-bottom: 10px;
         }
-
-        .product-desc {
-            font-size: 15px;
-            color: #777;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
         .product-price {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--luxury-gold);
-            margin-bottom: 25px;
+            font-size: 24px;
             font-family: 'Playfair Display', serif;
-        }
-
-        .btn-outline {
-            display: inline-block;
-            padding: 10px 25px;
-            border: 1px solid var(--primary-green);
-            color: var(--primary-green);
-            text-decoration: none;
+            color: var(--subtle-gold);
+            margin-bottom: 30px;
             font-weight: 600;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+        }
+        .btn-buy {
+            display: inline-block;
+            width: 100%;
+            background-color: var(--dark-brown);
+            color: var(--white);
+            padding: 15px 0;
+            border-radius: 10px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: var(--transition-smooth);
+        }
+        .btn-buy:hover {
+            background-color: var(--olive-green);
         }
 
-        .btn-outline:hover {
-            background-color: var(--primary-green);
+        /* --- Flow Section --- */
+        .flow {
+            text-align: center;
+        }
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            max-width: 900px;
+            margin: 60px auto 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--subtle-gold);
+            z-index: 1;
+        }
+        .timeline-step {
+            position: relative;
+            z-index: 2;
+            background-color: var(--matte-beige);
+            padding: 0 20px;
+        }
+        .step-circle {
+            width: 60px;
+            height: 60px;
+            background-color: var(--white);
+            border: 2px solid var(--subtle-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+            color: var(--olive-green);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: var(--transition-smooth);
+        }
+        .timeline-step:hover .step-circle {
+            transform: scale(1.1);
+            background-color: var(--subtle-gold);
             color: var(--white);
         }
-
-        /* --- Footer --- */
-        footer {
-            background-color: var(--primary-green);
-            color: var(--bg-cream);
-            text-align: center;
-            padding: 50px 20px 30px 20px;
-            border-top: 4px solid var(--luxury-gold);
+        .step-text {
+            font-weight: 600;
+            color: var(--dark-brown);
+            font-size: 14px;
+            text-transform: uppercase;
         }
 
+        /* --- Final Section --- */
+        .final-section {
+            background-color: var(--dark-brown);
+            color: var(--white);
+            text-align: center;
+            padding: 150px 10%;
+            position: relative;
+        }
+        .final-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(203, 162, 88, 0.15) 0%, transparent 70%);
+            z-index: 0;
+        }
+        .final-content {
+            position: relative;
+            z-index: 1;
+        }
+        .final-content h2 {
+            font-size: 56px;
+            color: var(--subtle-gold);
+            margin-bottom: 20px;
+        }
+        .final-content p {
+            font-size: 24px;
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #ccc;
+        }
+
+        /* --- Footer / Contact --- */
+        footer {
+            background-color: #1A1410;
+            color: var(--white);
+            text-align: center;
+            padding: 60px 10%;
+        }
+        .contact-info {
+            font-size: 16px;
+            line-height: 2;
+            color: #A0A0A0;
+        }
+        .contact-info strong {
+            color: var(--subtle-gold);
+            font-weight: 500;
+        }
         .footer-logo {
             font-family: 'Playfair Display', serif;
             font-size: 28px;
-            color: var(--luxury-gold);
-            margin-bottom: 15px;
+            color: var(--white);
+            margin-bottom: 30px;
         }
 
-        .footer-text {
-            font-size: 15px;
-            margin-bottom: 8px;
-            color: #D1D5D2;
-        }
-
-        .footer-bottom {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 13px;
-            color: #A0AAB2;
-        }
-
-        /* Responsive */
+        /* --- Responsive --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 32px; }
-            .hero p { font-size: 18px; }
-            .hero-features { flex-direction: column; gap: 10px; }
+            .hero h1 { font-size: 10vw; }
+            .hero p { font-size: 16px; }
+            .story { flex-direction: column; }
+            .timeline { flex-direction: column; gap: 40px; }
+            .timeline::before {
+                width: 2px;
+                height: 100%;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="1000322021.png" alt="GoldenDrops Dry Fruits Logo" class="logo-img">
+    <nav id="navbar">
+        <div class="logo hero-nav-text">GoldenDrops</div>
+    </nav>
+
+    <header class="hero">
+        <img src="https://images.unsplash.com/photo-1596431988904-45371bc607d7?q=80&w=2500&auto=format&fit=crop" class="hero-bg" alt="Nashik Vineyards Sunrise">
+        <div class="hero-overlay"></div>
+        
+        <div class="reveal">
+            <h1>GoldenDrops Dry Fruits</h1>
+            <p>Pure. Organic. Naturally Golden.</p>
+            <div class="hero-btns">
+                <a href="#products" class="btn btn-primary">Shop Now</a>
+                <a href="#story" class="btn btn-outline">Buy Direct From Farm</a>
+            </div>
+        </div>
     </header>
 
-    <section class="hero">
-        <h1>Pure. Organic. Naturally Golden.</h1>
-        <p>Experience the finest quality dry fruits, sun-dried to perfection and delivered direct from the lush farms of Nashik to your doorstep.</p>
-        
-        <div class="hero-features">
-            <span>🌿 100% Organic</span>
-            <span>🚫 No Chemicals</span>
-            <span>☀️ Sun Dried</span>
-            <span>🧑‍🌾 Farm to Table</span>
+    <section id="story">
+        <div class="story">
+            <div class="story-img reveal">
+                <img src="https://images.unsplash.com/photo-1628189851608-8120b604fddf?q=80&w=1200&auto=format&fit=crop" alt="Nashik Farmers">
+            </div>
+            <div class="story-content reveal">
+                <h4 style="color: var(--olive-green); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Our Heritage</h4>
+                <h2>Farmer to Customer</h2>
+                <p>Born in the lush, sun-kissed vineyards of Nashik, GoldenDrops represents the pinnacle of purity. We bypass the brokers to bring the harvest directly from our hands to your home.</p>
+                <p>Every raisin is a testament to traditional farming—sun-dried, untouched by chemicals, and nurtured with pure organic goodness. Experience the emotional journey of authentic agriculture.</p>
+            </div>
         </div>
-
-        <a href="#products" class="btn-gold">Explore Our Collection</a>
     </section>
 
-    <section id="products" class="products-section">
-        <h2 class="section-title">Our Premium Collection</h2>
-        <p class="section-subtitle">Handpicked goodness, packed with care and luxury.</p>
+    <section id="trust" style="background-color: #EAE3D2;">
+        <div class="reveal">
+            <h2 class="section-title">The Golden Standard</h2>
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <div class="trust-icon">🌿</div>
+                    <h4>100% Organic</h4>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">🚫</div>
+                    <h4>No Chemicals</h4>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">☀️</div>
+                    <h4>Sun Dried Traditional Method</h4>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">🧑‍🌾</div>
+                    <h4>Direct From Farmers</h4>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">✈️</div>
+                    <h4>Premium Export Quality</h4>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <div class="product-grid">
+    <section id="products" class="products">
+        <div class="reveal">
+            <h2 class="section-title">Exclusive Collection</h2>
+            <p class="section-subtitle">Luxury organic reserves, crafted by nature.</p>
             
-            <div class="product-card">
-                <div class="product-img-container">
-                    <img src="1000322199.png" alt="Premium Gift Box">
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="badge">Organic</div>
+                    <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=800&auto=format&fit=crop" alt="1 KG Premium Kishmish" class="product-img">
+                    <h3 class="product-title">Premium Kishmish</h3>
+                    <p style="color: #777; margin-bottom: 15px; font-size: 14px;">1 KG Pack • Direct from Farm</p>
+                    <div class="product-price">₹599</div>
+                    <a href="upi://pay?pa=9423529871@ybl&pn=GoldenDrops&cu=INR&am=599" class="btn-buy">Buy Direct via UPI</a>
                 </div>
-                <div class="product-info">
-                    <h3 class="product-title">The Royal Collection</h3>
-                    <p class="product-desc">Our signature black luxury box, perfect for gifting. Contains premium assorted Kishmish & Munakka.</p>
-                    <div class="product-price">₹1,299 <span style="font-size:14px; color:#999; text-decoration:line-through;">₹1,500</span></div>
-                    <a href="upi://pay?pa=9423529871@ybl&pn=GoldenDrops&cu=INR&am=1299" class="btn-outline">Buy Now</a>
+
+                <div class="product-card">
+                    <div class="badge">Organic</div>
+                    <img src="https://images.unsplash.com/photo-1528821128474-27f963b062bf?q=80&w=800&auto=format&fit=crop" alt="500 GM Premium Kishmish" class="product-img">
+                    <h3 class="product-title">Premium Kishmish</h3>
+                    <p style="color: #777; margin-bottom: 15px; font-size: 14px;">500 GM Pack • Direct from Farm</p>
+                    <div class="product-price">₹350</div>
+                    <a href="upi://pay?pa=9423529871@ybl&pn=GoldenDrops&cu=INR&am=350" class="btn-buy">Buy Direct via UPI</a>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="product-card">
-                <div class="product-img-container">
-                    <img src="1000322025.png" alt="Organic Kishmish & Munakka Pouches">
+    <section id="flow" class="flow">
+        <div class="reveal">
+            <h2 class="section-title">The Organic Journey</h2>
+            <p class="section-subtitle">A transparent timeline from our soil to your soul.</p>
+            
+            <div class="timeline">
+                <div class="timeline-step">
+                    <div class="step-circle">🌱</div>
+                    <div class="step-text">Farm</div>
                 </div>
-                <div class="product-info">
-                    <h3 class="product-title">Organic Twin Pack</h3>
-                    <p class="product-desc">Pure, authentic, and chemical-free 100% natural organic pouches. Daily health essentials.</p>
-                    <div class="product-price">₹899 <span style="font-size:14px; color:#999;">(Combo)</span></div>
-                    <a href="upi://pay?pa=9423529871@ybl&pn=GoldenDrops&cu=INR&am=899" class="btn-outline">Buy Now</a>
+                <div class="timeline-step">
+                    <div class="step-circle">☀️</div>
+                    <div class="step-text">Sun Dry</div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-circle">✨</div>
+                    <div class="step-text">Quality Check</div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-circle">🎁</div>
+                    <div class="step-text">Packaging</div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-circle">🚚</div>
+                    <div class="step-text">Delivery</div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="product-card">
-                <div class="product-img-container">
-                    <img src="1000322022.png" alt="Farm Fresh Kishmish Pouch">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Farm Fresh Pouch</h3>
-                    <p class="product-desc">500g of pure golden raisins sourced directly from Nashik vineyards. Taste the nature.</p>
-                    <div class="product-price">₹499 <span style="font-size:14px; color:#999;">(500g)</span></div>
-                    <a href="upi://pay?pa=9423529871@ybl&pn=GoldenDrops&cu=INR&am=499" class="btn-outline">Buy Now</a>
-                </div>
-            </div>
-
+    <section class="final-section">
+        <div class="final-content reveal">
+            <h2>GoldenDrops Dry Fruits</h2>
+            <p>"Pure. Organic. Naturally Golden."</p>
         </div>
     </section>
 
     <footer>
-        <div class="footer-logo">GoldenDrops Dry Fruits</div>
-        <p class="footer-text">Grown with love, packed with luxury.</p>
-        <p class="footer-text"><strong>Founders:</strong> Vaibhav Jadhav & Roshani Sonawane</p>
-        <p class="footer-text"><strong>Location:</strong> Nashik, Maharashtra, India</p>
-        <p class="footer-text" style="margin-top: 15px;">📞 Contact: +91 9423529871</p>
-        
-        <div class="footer-bottom">
-            &copy; 2026 GoldenDrops Dry Fruits. All Rights Reserved.
+        <div class="footer-logo">GoldenDrops</div>
+        <div class="contact-info">
+            <p><strong>Founders:</strong> Vaibhav Jadhav & Roshani Sonawane</p>
+            <p><strong>Location:</strong> Nashik, Maharashtra, India</p>
+            <p><strong>Phone:</strong> +91 9423529871</p>
+        </div>
+        <div style="margin-top: 40px; font-size: 12px; color: #666;">
+            &copy; 2026 GoldenDrops Dry Fruits. All rights reserved.
         </div>
     </footer>
 
-</body>
-</html>
+    <script>
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for Reveal Animations
+        const reveals = document.querySelectorAll('.reveal');
+        
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.tar
